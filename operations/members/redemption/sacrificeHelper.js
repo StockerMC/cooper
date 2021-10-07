@@ -146,10 +146,6 @@ export default class SacrificeHelper {
 
 
     static async processBackDagger(reaction) {
-        author = reaction.message.author
-        // Return if the message being reacted to was from a bot.
-        if (author.bot) return;
-
         const guild = COOP.SERVER.getByCode(COOP.STATE.CLIENT, 'PROD');
 
         // Calculate the number of required votes for the redemption poll.
@@ -166,7 +162,7 @@ export default class SacrificeHelper {
 
         // Limit this to only reaction to a certain count of emojis, fire once.
         if (sacrificeVotes === reqSacrificeVotes) {
-            const targetID = author.id;
+            const targetID = reaction.message.author.id;
             const targetMember = await COOP.USERS.fetchMemberByID(guild, targetID);
 
             // TODO: Award points to backstabbers
