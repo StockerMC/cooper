@@ -45,7 +45,13 @@ export default class SacrificeCommand extends CoopCommand {
 				const sacrificeText = `**<@${msg.author.id}> used their instant sacrifice power to offer <@${target.id}> for ${CHANNELS.textRef('SACRIFICE')}.`;
 				return MESSAGES.silentSelfDestruct(msg, sacrificeText, 0, 60000);
 			}
-			
+
+			// Prevent bots from being proposed as a sacrifice from someone without instant sacrifice power
+			if (target.bot) {
+				const invalidText = 'You cannot propose a bot as a sacrifice.';
+				return MESSAGES.silentSelfDestruct(msg, invalidText);
+			}
+
 			// Output a consent awaiting message attempting to unban the user
 			const sacrificeText = `**Vote on offering <@${target.id}> for ${CHANNELS.textRef('SACRIFICE')}:**\n\n` +
 				`_Press ${DAGGER} to vote to offer :dagger:._`;

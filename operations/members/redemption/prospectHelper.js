@@ -22,8 +22,8 @@ export default class ProspectHelper {
                 };
             });
 
-            // Select only the ready ones.
-            const readyProspects = Array.from(prospectCandidates.filter(p => p.ready));
+            // Select only the ready and non-bot prospects.
+            const readyProspects = Array.from(prospectCandidates.filter(p => p.ready && !p.bot));
             if (readyProspects.length === 0)
                 // Offer subliminal hint that there are no prospects ready at all.
                 return CHANNELS._tempSend('TALK', 'Recruit?', 333, 4444);
