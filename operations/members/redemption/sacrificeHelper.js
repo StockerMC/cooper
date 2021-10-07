@@ -299,7 +299,7 @@ export default class SacrificeHelper {
             // Select a member at random.
             const member = await COOP.USERS.random();
             // If the member is a bot, select another member.
-            if (member.bot) return await this.random()
+            if (member.bot) return await this.random();
 
             // Access the sacrifice channel for sacrifice data.
             
